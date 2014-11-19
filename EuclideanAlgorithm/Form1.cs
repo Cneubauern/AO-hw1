@@ -128,8 +128,9 @@ namespace EuclideanAlgorithm
 
             //Get Median
 			//ToDo: your implementation
-            
-            //Get Histogram            
+            double medianCPUTicks = getMedian(listCPUTimes);
+
+            //Get Histogram
 			//ToDo: your implementation
             long startHisto = 0; //get min value
             long endHisto = 0; //get max value
@@ -139,7 +140,7 @@ namespace EuclideanAlgorithm
             //Get Mode
 			//ToDo: your implementation
 
-            
+
 
             //show normalized histogram, probability density of CPU-time (ticks)
             double[] histoNormalized = getNormalizedHistogram(startHisto, endHisto, listCPUTimes);
@@ -149,10 +150,10 @@ namespace EuclideanAlgorithm
 
             //add data to chart
             chart1.Series[0].Points.Clear();
-            
+
             //ToDo: your implementation
             double cpuTicksHistoCounter=0;
-            
+
             foreach (double probCPUTicks in histoNormalized)
             {
                 //add datapoint X,Y to chart
@@ -163,16 +164,57 @@ namespace EuclideanAlgorithm
             }
         }
 
+        public static double getMedian(List<long resultset)
+        {
+          long d = 0;
+          foreach (long t in resultset)
+          {
+            d += t;
+          }
+          if (resultset.Count!= 0)
+              return d / resultset.Count;
+          else
+              return d;
+        }
+
+        public static double getMode(List<long resultset)
+        {
+        return 0;
+        }
+
         public static double getMean(List<long> resultset)
         {
             //ToDo: your implementation
-			return 0;
+            ulong number = Convert.ToUInt64(resultset.Count);
+            ulong x = 0;
+            foreach (ulong time in resultset)
+            {
+              x += time;
+            }
+          return x / number;
+        }
+
+        public static double getOnlineMean( double counter, double old_mean, double new_result)
+        {
+          double mean = 0.0;
+          double s = 0.0
+            //ToDo: your implementation
+            if(counter <= allIterations)
+              mean= ((counter-1)*old_mean+new_result)/counter;
+            return mean;
         }
 
         public static double getVariance(List<long> resultSet)
         {
             //ToDo: your implementation
-			return 0;
+            int v = 0;
+            int n = resultSet.Count();
+            int m = (int)getMean(resultSet);
+            foreach (int x in resultSet)
+            {
+                v += (x - m) * (x-m);
+            }
+            return v/n;
         }
 
         public static List<int> getHistogram(double start, double end, List<long> data)
@@ -187,12 +229,13 @@ namespace EuclideanAlgorithm
 
         public static double[] getNormalizedHistogram(double start, double end, List<long> data)
         {
+        
 			//ToDo: your implementation
             int num_bins = (int)Math.Round(Math.Sqrt(data.Count));
 
             double[] histo = new double[num_bins];
 
-            
+
             return histo;
         }
 
