@@ -156,8 +156,8 @@ namespace EuclideanAlgorithm
 
             //Get Histogram
 			//ToDo: your implementation
-            long startHisto = 0; //get min value
-            long endHisto = 0; //get max value
+            long startHisto = getMinValue(listCPUTimes); //get min value
+            long endHisto = getMaxValue(listCPUTimes); //get max value
 
             //Get Mode
 			//ToDo: your implementation
@@ -241,16 +241,51 @@ namespace EuclideanAlgorithm
             return v/n;
         }
 
+        private static long getMinValue(List<long> resultset) 
+        {
+            if (resultset.Count == 0)
+                throw new InvalidOperationException("Empty list");
+
+            long minValue = long.MaxValue;
+
+            foreach (long t in resultset)
+                if (t < minValue)
+                    minValue = t;
+            
+            return minValue; 
+        }
+        private static long getMaxValue(List<long> resultset)
+        {
+            if (resultset.Count == 0)
+                throw new InvalidOperationException("Empty list");
+
+            long maxValue = 0;
+            foreach (long t in resultset)
+                if (t > maxValue)
+                    maxValue = t;
+            return maxValue;
+        }
+
         public static double[] getNormalizedHistogram(double start, double end, List<long> data)
         {
-        
+           
 			//ToDo: your implementation
-            int num_bins = (int)Math.Round(Math.Sqrt(data.Count));
+            int num_bins = (int)Math.Round(Math.Sqrt(data.Count()));
+            int bin_size = (int)(end - start) / num_bins;
 
             double[] histo = new double[num_bins];
 
-
-            return histo;
+            for (int k = 0; k < data.Count(); k++)
+            {
+                for (int i = 0; i < num_bins-1; i++)
+                {
+                    if ((data[k] >= (start + i * bin_size)) && (data[k] < (end + (i + 1) * bin_size)))
+                    {
+                        histo[i]++;
+                    }
+                }
+            }
+                return histo;
         }
 
         private void comboBox_Method_SelectedIndexChanged(object sender, EventArgs e)
