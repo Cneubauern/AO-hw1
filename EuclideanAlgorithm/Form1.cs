@@ -285,7 +285,14 @@ namespace EuclideanAlgorithm
                     }
                 }
             }
-                return histo;
+
+            double num_data = 0.0 ;
+            for (int i = 0; i < histo.Count(); i++)
+                num_data += histo[i];
+            for (int j = 0; j < histo.Count(); j++)
+                histo[j] /= (double)num_data;
+
+            return histo;
         }
 
         private void comboBox_Method_SelectedIndexChanged(object sender, EventArgs e)
