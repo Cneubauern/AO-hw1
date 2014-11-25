@@ -29,7 +29,7 @@ namespace EuclideanAlgorithm
             int n = Convert.ToInt32(numericUpDown_b.Value);
 
             Stopwatch timer = new Stopwatch();   //other way to initialize: Stopwatch timer = Stopwatch.StartNew();
-
+            
             timer.Start();
 
             numIterations = 0;
@@ -53,13 +53,16 @@ namespace EuclideanAlgorithm
             timer.Stop();
             textBox_Results.AppendText("\r\n Func Value: " + res);
 
-            //textBox_Results.AppendText("\r\n CPU-time(ticks):" + timer.ElapsedTicks);
-            //textBox_Results.AppendText("\r\n CPU-time(ms):" + timer.ElapsedMilliseconds);
-            //textBox_Results.AppendText("\r\n Number of iterations:" + numIterations);
+            textBox_Results.AppendText("\r\n CPU-time(ticks):" + timer.ElapsedTicks);
+            textBox_Results.AppendText("\r\n CPU-time(ms):" + timer.ElapsedMilliseconds);
+            textBox_Results.AppendText("\r\n Number of iterations:" + numIterations);
+            timer.Reset();
         }
 
         double function_1(int x, int n)
         {
+            ++numIterations;
+            
             double res = 1;
             while (n > 0) {
                 res *= x;
@@ -70,6 +73,8 @@ namespace EuclideanAlgorithm
 
         double function_2(int x, int n)
         {
+            ++numIterations;
+
             if (n == 1)
                 return x;
             else
@@ -78,26 +83,31 @@ namespace EuclideanAlgorithm
 
         double function_3(double x, double n)
         {
-            if (n == 0)
+            ++numIterations;
+
+            if(n == 1)
                 return x;
-            if (n % 2 == 0)
-                return x * function_3(x, n / 2);
-            else
-                return x * function_3(x, n - 1);
+            
+            if (((int)n & 1) == 0)
+                return function_3(x * x, (int)n >> 1);
+
+            return x * function_3(x, n - 1);
         }
 
         /** LOOPS */
         private void button_loops_Click(object sender, EventArgs e)
         {
-            ulong l_a = Convert.ToUInt64(numericUpDown_a.Value);
-            ulong l_b = Convert.ToUInt64(numericUpDown_b.Value);
+            int x = Convert.ToInt32(numericUpDown_a.Value);
+            int n = Convert.ToInt32(numericUpDown_b.Value);
 
             List<long> listCPUTimes = new List<long>();
+            List<int> listIterations = new List<int>();
 
             int numOfLoops = (int)numericUpDown_loops.Value;
 
             Stopwatch timer = new Stopwatch();   //other way to initialize: Stopwatch timer = Stopwatch.StartNew();
 
+            double res = 0;
             for (int i = 0; i < numOfLoops; i++)
             {
                 timer.Reset();
@@ -106,16 +116,30 @@ namespace EuclideanAlgorithm
                 switch (comboBox_Method.SelectedIndex)
                 {
                     case 0:
+                        res = function_1(x, n);
                         break;
                     case 1:
+                        res = function_2(x, n);
+                        break;
+                    case 2:
+                        res = function_3(x, n);
                         break;
                     default:
                         return;
                 }
 
                 timer.Stop();
-                listCPUTimes.Add(timer.ElapsedTicks);
-                textBox_Results.AppendText("\r\n Iteration " + i.ToString() + ", CPU-time(ticks):" + timer.ElapsedTicks);
+                if (i != 0)
+                {
+                    listCPUTimes.Add(timer.ElapsedTicks);
+                    listIterations.Add(numIterations);
+
+                    textBox_Results.AppendText("\r\n Iteration " + i.ToString() + ", CPU-time(ticks):" + timer.ElapsedTicks);
+                    textBox_Results.AppendText("\r\n Number of iterations:" + numIterations);
+                    textBox_Results.AppendText("\r\n");
+                }
+
+                numIterations = 0;
             }
 
             //Get Mean and SD
@@ -134,8 +158,6 @@ namespace EuclideanAlgorithm
 			//ToDo: your implementation
             long startHisto = 0; //get min value
             long endHisto = 0; //get max value
-
-            List<int> histo = getHistogram(startHisto, endHisto, listCPUTimes);
 
             //Get Mode
 			//ToDo: your implementation
@@ -164,7 +186,7 @@ namespace EuclideanAlgorithm
             }
         }
 
-        public static double getMedian(List<long resultset)
+        public static double getMedian(List<long> resultset)
         {
           long d = 0;
           foreach (long t in resultset)
@@ -177,9 +199,9 @@ namespace EuclideanAlgorithm
               return d;
         }
 
-        public static double getMode(List<long resultset)
+        public static double getMode(List<long> resultset)
         {
-        return 0;
+            return 0;
         }
 
         public static double getMean(List<long> resultset)
@@ -197,9 +219,9 @@ namespace EuclideanAlgorithm
         public static double getOnlineMean( double counter, double old_mean, double new_result)
         {
           double mean = 0.0;
-          double s = 0.0
+          double s = 0.0;
             //ToDo: your implementation
-            if(counter <= allIterations)
+            if(counter <= 0)
               mean= ((counter-1)*old_mean+new_result)/counter;
             return mean;
         }
@@ -210,21 +232,13 @@ namespace EuclideanAlgorithm
             int v = 0;
             int n = resultSet.Count();
             int m = (int)getMean(resultSet);
+
             foreach (int x in resultSet)
             {
                 v += (x - m) * (x-m);
             }
+
             return v/n;
-        }
-
-        public static List<int> getHistogram(double start, double end, List<long> data)
-        {
-			//ToDo: your implementation
-            int num_bins = 1;
-
-            List<int> histo = new List<int>(num_bins);
-
-            return histo;
         }
 
         public static double[] getNormalizedHistogram(double start, double end, List<long> data)
@@ -237,6 +251,11 @@ namespace EuclideanAlgorithm
 
 
             return histo;
+        }
+
+        private void comboBox_Method_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
