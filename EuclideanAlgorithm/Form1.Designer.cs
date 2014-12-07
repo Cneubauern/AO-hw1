@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+=======
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+>>>>>>> FETCH_HEAD
             this.numericUpDown_a = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_b = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -128,10 +134,17 @@
             // 
             // button_loops
             // 
+<<<<<<< HEAD
             this.button_loops.Location = new System.Drawing.Point(254, 38);
             this.button_loops.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button_loops.Name = "button_loops";
             this.button_loops.Size = new System.Drawing.Size(84, 24);
+=======
+            this.button_loops.Location = new System.Drawing.Point(208, 38);
+            this.button_loops.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.button_loops.Name = "button_loops";
+            this.button_loops.Size = new System.Drawing.Size(134, 77);
+>>>>>>> FETCH_HEAD
             this.button_loops.TabIndex = 7;
             this.button_loops.Text = "BarGraph";
             this.button_loops.UseVisualStyleBackColor = true;
@@ -207,6 +220,7 @@
             // 
             // chart1
             // 
+<<<<<<< HEAD
             chartArea2.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
@@ -214,6 +228,19 @@
             this.chart1.Location = new System.Drawing.Point(354, 15);
             this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
+=======
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
+            this.chart1.Location = new System.Drawing.Point(354, 15);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chart1.Name = "chart1";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
+>>>>>>> FETCH_HEAD
             this.chart1.Size = new System.Drawing.Size(472, 366);
             this.chart1.TabIndex = 13;
             this.chart1.Text = "chart1";
@@ -243,9 +270,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(852, 385);
             this.Controls.Add(this.LineGraph);
             this.Controls.Add(this.ClearButton);
+=======
+            this.ClientSize = new System.Drawing.Size(681, 385);
+>>>>>>> FETCH_HEAD
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.button_getGCD);
             this.Controls.Add(this.label4);

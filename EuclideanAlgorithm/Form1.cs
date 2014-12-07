@@ -61,8 +61,15 @@ namespace EuclideanAlgorithm
             timer.Reset();
         }
 
+<<<<<<< HEAD
         double function_1(int x, ulong n)
         {            
+=======
+        double function_1(int x, int n)
+        {
+            ++numIterations;
+            
+>>>>>>> FETCH_HEAD
             double res = 1;
             while (n > 0) {
                 ++numIterations;
@@ -74,7 +81,11 @@ namespace EuclideanAlgorithm
 
         double function_2(int x, ulong n)
         {
+<<<<<<< HEAD
            ++numIterations;
+=======
+            ++numIterations;
+>>>>>>> FETCH_HEAD
 
             if (n == 1)
                 return x;
@@ -86,6 +97,7 @@ namespace EuclideanAlgorithm
         {
             ++numIterations;
 
+<<<<<<< HEAD
             if (n == 1)
             {
                 return x;
@@ -99,14 +111,28 @@ namespace EuclideanAlgorithm
             {
                 return x * function_3(x * x, (n - 1) >> 1);
             }
+=======
+            if(n == 1)
+                return x;
+            
+            if (((int)n & 1) == 0)
+                return function_3(x * x, (int)n >> 1);
+
+            return x * function_3(x, n - 1);
+>>>>>>> FETCH_HEAD
         }
 
         /** LOOPS */
         private void button_loops_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             String buttonName = (sender as Button).Text.ToString();
             int x = Convert.ToInt32(numericUpDown_a.Value);
             ulong n = Convert.ToUInt64(numericUpDown_b.Value);
+=======
+            int x = Convert.ToInt32(numericUpDown_a.Value);
+            int n = Convert.ToInt32(numericUpDown_b.Value);
+>>>>>>> FETCH_HEAD
 
             List<long> listCPUTimes = new List<long>();
             List<int> listIterations = new List<int>();
@@ -138,7 +164,10 @@ namespace EuclideanAlgorithm
                 }
 
                 timer.Stop();
+<<<<<<< HEAD
 
+=======
+>>>>>>> FETCH_HEAD
                 if (i != 0)
                 {
                     listCPUTimes.Add(timer.ElapsedTicks);
@@ -168,6 +197,7 @@ namespace EuclideanAlgorithm
 			//ToDo: your implementation
             long startHisto = getMinValue(listCPUTimes); //get min value
             long endHisto = getMaxValue(listCPUTimes); //get max value
+<<<<<<< HEAD
             double[] histoNormalized = getNormalizedHistogram(startHisto, endHisto, listCPUTimes);
 
             switch (buttonName)
@@ -180,6 +210,8 @@ namespace EuclideanAlgorithm
                     break;
             }
         }
+=======
+>>>>>>> FETCH_HEAD
 
         public static void drawGraph(Chart chart1, double[] histo, String funcName, long start)
         {
@@ -322,7 +354,10 @@ namespace EuclideanAlgorithm
             
             return minValue; 
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> FETCH_HEAD
         private static long getMaxValue(List<long> resultset)
         {
             if (resultset.Count == 0)
@@ -344,6 +379,7 @@ namespace EuclideanAlgorithm
 
             double[] histo = new double[num_bins];
 
+<<<<<<< HEAD
             for (int k = 0; k < data.Count(); ++k)
             {
                 for (int i = 0; i < num_bins - 1; ++i)
@@ -351,14 +387,29 @@ namespace EuclideanAlgorithm
                     if ((data[k] >= (start + i * bin_size)) && (data[k] < (end + (i + 1) * bin_size)))
                     {
                         ++histo[i];
+=======
+            for (int k = 0; k < data.Count(); k++)
+            {
+                for (int i = 0; i < num_bins-1; i++)
+                {
+                    if ((data[k] >= (start + i * bin_size)) && (data[k] < (end + (i + 1) * bin_size)))
+                    {
+                        histo[i]++;
+>>>>>>> FETCH_HEAD
                     }
                 }
             }
 
             double num_data = 0.0 ;
+<<<<<<< HEAD
             for (int i = 0; i < histo.Count(); ++i)
                 num_data += histo[i];
             for (int j = 0; j < histo.Count(); ++j)
+=======
+            for (int i = 0; i < histo.Count(); i++)
+                num_data += histo[i];
+            for (int j = 0; j < histo.Count(); j++)
+>>>>>>> FETCH_HEAD
                 histo[j] /= (double)num_data;
 
             return histo;
@@ -369,6 +420,7 @@ namespace EuclideanAlgorithm
 
         }
 
+<<<<<<< HEAD
         private void clearGraph_Click(object sender, EventArgs e)
         {
             chart1.Series.Clear();
@@ -378,5 +430,7 @@ namespace EuclideanAlgorithm
         {
             button_loops_Click(sender, e);
         }
+=======
+>>>>>>> FETCH_HEAD
     }
 }
