@@ -31,7 +31,7 @@ namespace EuclideanAlgorithm
             ulong n = Convert.ToUInt64(numericUpDown_b.Value);
 
             Stopwatch timer = new Stopwatch();   //other way to initialize: Stopwatch timer = Stopwatch.StartNew();
-            
+
             timer.Start();
 
             numIterations = 0;
@@ -48,6 +48,9 @@ namespace EuclideanAlgorithm
                 case 2:
                     res = function_3(x, n);
                     break;
+                case 3:
+                    res = Math.Pow(x, n);
+                    break;
                 default:
                     return;
             }
@@ -62,7 +65,7 @@ namespace EuclideanAlgorithm
         }
 
         double function_1(int x, ulong n)
-        {            
+        {
             double res = 1;
             while (n > 0) {
                 ++numIterations;
@@ -133,6 +136,8 @@ namespace EuclideanAlgorithm
                     case 2:
                         res = function_3(x, n);
                         break;
+                    case 3:
+                        res = Math.Pow(x, n)
                     default:
                         return;
                 }
@@ -206,7 +211,7 @@ namespace EuclideanAlgorithm
                 //add datapoint X,Y to chart
                 chart1.Series[funcName].Points.AddXY(cpuTicksHistoCounter+start, probCPUTicks);
                 ++cpuTicksHistoCounter;
-            }        
+            }
         }
 
         public static void drawLineGraph(Chart chart1, List<long> cputTimes, String funcName)
@@ -235,7 +240,7 @@ namespace EuclideanAlgorithm
                 //add datapoint X,Y to chart
                 chart1.Series[funcName].Points.AddXY(cpuTicksHistoCounter, cpuTicks);
                 ++cpuTicksHistoCounter;
-            }        
+            }
         }
 
         private static int getYMinimum(List<long> cpuTimes)
@@ -309,7 +314,7 @@ namespace EuclideanAlgorithm
             return v/n;
         }
 
-        private static long getMinValue(List<long> resultset) 
+        private static long getMinValue(List<long> resultset)
         {
             if (resultset.Count == 0)
                 throw new InvalidOperationException("Empty list");
@@ -319,8 +324,8 @@ namespace EuclideanAlgorithm
             foreach (long t in resultset)
                 if (t < minValue)
                     minValue = t;
-            
-            return minValue; 
+
+            return minValue;
         }
 
         private static long getMaxValue(List<long> resultset)
@@ -337,7 +342,7 @@ namespace EuclideanAlgorithm
 
         public static double[] getNormalizedHistogram(double start, double end, List<long> data)
         {
-           
+
 			//ToDo: your implementation
             int num_bins = (int)Math.Round(Math.Sqrt(data.Count()));
             int bin_size = (int)(end - start) / num_bins;
