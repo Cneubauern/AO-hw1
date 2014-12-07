@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.numericUpDown_a = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_b = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +42,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button_getGCD = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.LineGraph = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_a)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_b)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_loops)).BeginInit();
@@ -51,8 +52,8 @@
             // 
             // numericUpDown_a
             // 
-            this.numericUpDown_a.Location = new System.Drawing.Point(132, 31);
-            this.numericUpDown_a.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.numericUpDown_a.Location = new System.Drawing.Point(66, 16);
+            this.numericUpDown_a.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.numericUpDown_a.Maximum = new decimal(new int[] {
             1569325056,
             23283064,
@@ -64,18 +65,18 @@
             0,
             0});
             this.numericUpDown_a.Name = "numericUpDown_a";
-            this.numericUpDown_a.Size = new System.Drawing.Size(240, 31);
+            this.numericUpDown_a.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown_a.TabIndex = 1;
             this.numericUpDown_a.Value = new decimal(new int[] {
-            24,
+            2,
             0,
             0,
             0});
             // 
             // numericUpDown_b
             // 
-            this.numericUpDown_b.Location = new System.Drawing.Point(132, 81);
-            this.numericUpDown_b.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.numericUpDown_b.Location = new System.Drawing.Point(66, 42);
+            this.numericUpDown_b.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.numericUpDown_b.Maximum = new decimal(new int[] {
             1569325056,
             23283064,
@@ -87,10 +88,10 @@
             0,
             0});
             this.numericUpDown_b.Name = "numericUpDown_b";
-            this.numericUpDown_b.Size = new System.Drawing.Size(240, 31);
+            this.numericUpDown_b.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown_b.TabIndex = 2;
             this.numericUpDown_b.Value = new decimal(new int[] {
-            9,
+            6,
             0,
             0,
             0});
@@ -98,48 +99,48 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(93, 31);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(46, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 25);
+            this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "x=";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(93, 94);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Location = new System.Drawing.Point(46, 49);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 25);
+            this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "n=";
             // 
             // textBox_Results
             // 
-            this.textBox_Results.Location = new System.Drawing.Point(24, 239);
-            this.textBox_Results.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.textBox_Results.Location = new System.Drawing.Point(12, 124);
+            this.textBox_Results.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox_Results.Multiline = true;
             this.textBox_Results.Name = "textBox_Results";
             this.textBox_Results.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_Results.Size = new System.Drawing.Size(672, 489);
+            this.textBox_Results.Size = new System.Drawing.Size(338, 256);
             this.textBox_Results.TabIndex = 6;
             // 
             // button_loops
             // 
-            this.button_loops.Location = new System.Drawing.Point(415, 74);
-            this.button_loops.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.button_loops.Location = new System.Drawing.Point(254, 38);
+            this.button_loops.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button_loops.Name = "button_loops";
-            this.button_loops.Size = new System.Drawing.Size(269, 149);
+            this.button_loops.Size = new System.Drawing.Size(84, 24);
             this.button_loops.TabIndex = 7;
-            this.button_loops.Text = "Over Loops";
+            this.button_loops.Text = "BarGraph";
             this.button_loops.UseVisualStyleBackColor = true;
             this.button_loops.Click += new System.EventHandler(this.button_loops_Click);
             // 
             // numericUpDown_loops
             // 
-            this.numericUpDown_loops.Location = new System.Drawing.Point(509, 29);
-            this.numericUpDown_loops.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.numericUpDown_loops.Location = new System.Drawing.Point(254, 15);
+            this.numericUpDown_loops.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.numericUpDown_loops.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -151,7 +152,7 @@
             0,
             0});
             this.numericUpDown_loops.Name = "numericUpDown_loops";
-            this.numericUpDown_loops.Size = new System.Drawing.Size(189, 31);
+            this.numericUpDown_loops.Size = new System.Drawing.Size(94, 20);
             this.numericUpDown_loops.TabIndex = 8;
             this.numericUpDown_loops.Value = new decimal(new int[] {
             10,
@@ -162,10 +163,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(421, 32);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Location = new System.Drawing.Point(210, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 25);
+            this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "loops=";
             // 
@@ -176,28 +177,29 @@
             "function 1",
             "function 2",
             "function 3"});
-            this.comboBox_Method.Location = new System.Drawing.Point(131, 131);
-            this.comboBox_Method.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.comboBox_Method.Location = new System.Drawing.Point(66, 68);
+            this.comboBox_Method.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBox_Method.Name = "comboBox_Method";
-            this.comboBox_Method.Size = new System.Drawing.Size(239, 33);
+            this.comboBox_Method.Size = new System.Drawing.Size(122, 21);
             this.comboBox_Method.TabIndex = 10;
+            this.comboBox_Method.SelectedIndexChanged += new System.EventHandler(this.comboBox_Method_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 136);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Location = new System.Drawing.Point(16, 71);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 25);
+            this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Method:";
             // 
             // button_getGCD
             // 
-            this.button_getGCD.Location = new System.Drawing.Point(132, 182);
-            this.button_getGCD.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.button_getGCD.Location = new System.Drawing.Point(66, 95);
+            this.button_getGCD.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button_getGCD.Name = "button_getGCD";
-            this.button_getGCD.Size = new System.Drawing.Size(240, 44);
+            this.button_getGCD.Size = new System.Drawing.Size(120, 23);
             this.button_getGCD.TabIndex = 12;
             this.button_getGCD.Text = "Go";
             this.button_getGCD.UseVisualStyleBackColor = true;
@@ -205,26 +207,45 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(708, 29);
-            this.chart1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(354, 15);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(944, 704);
+            this.chart1.Size = new System.Drawing.Size(472, 366);
             this.chart1.TabIndex = 13;
             this.chart1.Text = "chart1";
             // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(254, 97);
+            this.ClearButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(84, 24);
+            this.ClearButton.TabIndex = 14;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.clearGraph_Click);
+            // 
+            // LineGraph
+            // 
+            this.LineGraph.Location = new System.Drawing.Point(254, 68);
+            this.LineGraph.Name = "LineGraph";
+            this.LineGraph.Size = new System.Drawing.Size(84, 23);
+            this.LineGraph.TabIndex = 15;
+            this.LineGraph.Text = "LineGraph";
+            this.LineGraph.UseVisualStyleBackColor = true;
+            this.LineGraph.Click += new System.EventHandler(this.lineGraph_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1661, 745);
+            this.ClientSize = new System.Drawing.Size(852, 385);
+            this.Controls.Add(this.LineGraph);
+            this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.button_getGCD);
             this.Controls.Add(this.label4);
@@ -237,7 +258,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown_b);
             this.Controls.Add(this.numericUpDown_a);
-            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "Form1";
             this.Text = "GCD";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_a)).EndInit();
@@ -263,6 +284,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button_getGCD;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button LineGraph;
     }
 }
 
