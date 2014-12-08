@@ -137,7 +137,8 @@ namespace EuclideanAlgorithm
                         res = function_3(x, n);
                         break;
                     case 3:
-                        res = Math.Pow(x, n)
+                        res = Math.Pow(x, n);
+                        break;
                     default:
                         return;
                 }
@@ -163,6 +164,7 @@ namespace EuclideanAlgorithm
             double standardDeviationCPUTicks = Math.Sqrt(varianceCPUTicks);
 
             textBox_Results.AppendText("\r\n Mean CPU-time(ticks):" + meanCPUTicks);
+            textBox_Results.AppendText("\r\n variance CPU-time(ticks):" +varianceCPUTicks);
             textBox_Results.AppendText("\r\n Standard Deviation CPU-time(ticks):" + standardDeviationCPUTicks);
 
             //Get Median
