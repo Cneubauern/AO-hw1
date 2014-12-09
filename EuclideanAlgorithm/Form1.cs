@@ -56,10 +56,12 @@ namespace EuclideanAlgorithm
             }
 
             timer.Stop();
+            String name = comboBox_Method.SelectedItem.ToString();
+            textBox_Results.AppendText("\r\n" + name);
             textBox_Results.AppendText("\r\n Func Value: " + res);
 
             textBox_Results.AppendText("\r\n CPU-time(ticks):" + timer.ElapsedTicks);
-            textBox_Results.AppendText("\r\n CPU-time(ms):" + timer.ElapsedMilliseconds);
+            textBox_Results.AppendText("\r\n CPU-time(ms):" + (double)timer.ElapsedMilliseconds);
             textBox_Results.AppendText("\r\n Number of iterations:" + numIterations);
             timer.Reset();
         }
@@ -94,13 +96,13 @@ namespace EuclideanAlgorithm
                 return x;
             }
 
-            if (((int)n & 1) == 0)
+            if ((n & 1) == 0)
             {
-                return function_3(x * x, n >> 1);
+                return function_3(x * x, n>> 1);
             }
             else
             {
-                return x * function_3(x * x, (n - 1) >> 1);
+                return x * function_3(x * x, (n - 1)>> 1);
             }
         }
 
@@ -150,9 +152,9 @@ namespace EuclideanAlgorithm
                     listCPUTimes.Add(timer.ElapsedTicks);
                     listIterations.Add(numIterations);
 
-                    textBox_Results.AppendText("\r\n Iteration " + i.ToString() + ", CPU-time(ticks):" + timer.ElapsedTicks);
-                    textBox_Results.AppendText("\r\n Number of iterations:" + numIterations);
-                    textBox_Results.AppendText("\r\n");
+                  //  textBox_Results.AppendText("\r\n Iteration " + i.ToString() + ", CPU-time(ticks):" + timer.ElapsedTicks);
+                  //  textBox_Results.AppendText("\r\n Number of iterations:" + numIterations);
+                  //  textBox_Results.AppendText("\r\n");
                 }
 
                 numIterations = 0;
@@ -173,46 +175,51 @@ namespace EuclideanAlgorithm
 
             //Get Histogram
 			//ToDo: your implementation
-            long startHisto = getMinValue(listCPUTimes); //get min value
-            long endHisto = getMaxValue(listCPUTimes); //get max value
+            ulong startHisto = getMinValue(listCPUTimes); //get min value
+            ulong endHisto = getMaxValue(listCPUTimes); //get max value
             double[] histoNormalized = getNormalizedHistogram(startHisto, endHisto, listCPUTimes);
 
             switch (buttonName)
             {
                 case "BarGraph":
-                    drawGraph(chart1, histoNormalized, funcName,startHisto);
+                    drawGraph(chart1, histoNormalized, funcName,n,startHisto,endHisto);
                     break;
                 case "LineGraph":
                     drawLineGraph(chart1, listCPUTimes, funcName);
                     break;
             }
+            listCPUTimes.Clear();
         }
 
-        public static void drawGraph(Chart chart1, double[] histo, String funcName, long start)
+        public static void drawGraph(Chart chart1, double[] histo, String funcName, ulong n, ulong start, ulong end)
         {
             //if (chart1.Series.Count != 0 && chart1.Series[0].ChartType != SeriesChartType.Bar)
             //    chart1.Series.Clear();
 
             Series series;
+            String seriesname = funcName + "n = " + n;
+            double bin_size = (end - start)/(ulong)histo.Count();
             double cpuTicksHistoCounter = 0;
 
             //Console.Write("chart1.Series[0].ChartType: " + chart1.Series[0].ChartType);
 
-            if (!chart1.Series.IsUniqueName(funcName))
+            if (!chart1.Series.IsUniqueName(seriesname))
             {
-                chart1.Series[funcName].Points.Clear();
+                chart1.Series[seriesname].Points.Clear();
                 //chart1.Series.Remove(chart1.Series[seriesArr[i]]);
             }
             else
             {
-                series = chart1.Series.Add(funcName);
+                series = chart1.Series.Add(seriesname);
             }
 
             foreach (double probCPUTicks in histo)
             {
                 //add datapoint X,Y to chart
-                chart1.Series[funcName].Points.AddXY(cpuTicksHistoCounter+start, probCPUTicks);
+      //          chart1.Series[seriesname].Points.AddXY(cpuTicksHistoCounter, probCPUTicks);
+                chart1.Series[seriesname].Points.AddXY(cpuTicksHistoCounter*bin_size+start, probCPUTicks);
                 ++cpuTicksHistoCounter;
+                
             }
         }
 
@@ -284,9 +291,9 @@ namespace EuclideanAlgorithm
             //ToDo: your implementation
             ulong number = Convert.ToUInt64(resultset.Count);
             ulong x = 0;
-            foreach (ulong time in resultset)
+            foreach (ulong result in resultset)
             {
-              x += time;
+              x += result;
             }
           return x / number;
         }
@@ -304,39 +311,39 @@ namespace EuclideanAlgorithm
         public static double getVariance(List<long> resultSet)
         {
             //ToDo: your implementation
-            int v = 0;
-            int n = resultSet.Count();
-            int m = (int)getMean(resultSet);
+            double v = 0.0;
+            double n = resultSet.Count();
+            double m = getMean(resultSet);
 
-            foreach (int x in resultSet)
+            foreach (ulong x in resultSet)
             {
-                v += (x - m) * (x-m);
+                v += x*x - 2*x*m + m*m;
             }
 
             return v/n;
         }
 
-        private static long getMinValue(List<long> resultset)
+        private static ulong getMinValue(List<long> resultset)
         {
             if (resultset.Count == 0)
                 throw new InvalidOperationException("Empty list");
 
-            long minValue = long.MaxValue;
+            ulong minValue = long.MaxValue;
 
-            foreach (long t in resultset)
+            foreach (ulong t in resultset)
                 if (t < minValue)
                     minValue = t;
 
             return minValue;
         }
 
-        private static long getMaxValue(List<long> resultset)
+        private static ulong getMaxValue(List<long> resultset)
         {
             if (resultset.Count == 0)
                 throw new InvalidOperationException("Empty list");
 
-            long maxValue = 0;
-            foreach (long t in resultset)
+            ulong maxValue = 0;
+            foreach (ulong t in resultset)
                 if (t > maxValue)
                     maxValue = t;
             return maxValue;
@@ -347,17 +354,22 @@ namespace EuclideanAlgorithm
 
 			//ToDo: your implementation
             int num_bins = (int)Math.Round(Math.Sqrt(data.Count()));
-            int bin_size = (int)(end - start) / num_bins;
+            double bin_size = (end - start) / num_bins;
+
+          //  double[] bins = {0, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0 };
+          //  int num_bins = bins.Count();
 
             double[] histo = new double[num_bins];
 
             for (int k = 0; k < data.Count(); ++k)
             {
-                for (int i = 0; i < num_bins - 1; ++i)
+                for (int i = 0; i < num_bins; ++i)
                 {
-                    if ((data[k] >= (start + i * bin_size)) && (data[k] < (end + (i + 1) * bin_size)))
+               //     double bin_size = bins[i];
+                    if ((data[k] >= (start + (i * bin_size)) && (data[k] < (end + (i+1)* bin_size))))
+               //      if ((data[k]>=bins[i])&&(data[k]<bins[i+1]))
                     {
-                        ++histo[i];
+                        histo[i]++;
                     }
                 }
             }
@@ -366,7 +378,7 @@ namespace EuclideanAlgorithm
             for (int i = 0; i < histo.Count(); ++i)
                 num_data += histo[i];
             for (int j = 0; j < histo.Count(); ++j)
-                histo[j] /= (double)num_data;
+                histo[j] /= num_data;
 
             return histo;
         }
@@ -384,6 +396,24 @@ namespace EuclideanAlgorithm
         private void lineGraph_Click(object sender, EventArgs e)
         {
             button_loops_Click(sender, e);
+        }
+
+        private void Ttestbutton_Click(object sender, EventArgs e)
+        {
+            String series_1 = chart1.Series[0].Name.ToString();
+            String series_2 = chart1.Series[1].Name.ToString();
+
+            TTestResult result = chart1.DataManipulator.Statistics.TTestPaired(0.2, 0.05,series_1,series_2);
+            textBox_Results.AppendText("\r\n T-Test:" + result.TValue);
+        }
+
+        private void Ftestbutton_Click(object sender, EventArgs e)
+        {
+            String series_1 = chart1.Series[0].Name.ToString();
+            String series_2 = chart1.Series[1].Name.ToString();
+
+            FTestResult result = chart1.DataManipulator.Statistics.FTest(0.05, series_1, series_2);
+            textBox_Results.AppendText("\r\n F-Test: " + result.FValue);
         }
     }
 }

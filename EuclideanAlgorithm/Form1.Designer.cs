@@ -44,6 +44,8 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ClearButton = new System.Windows.Forms.Button();
             this.LineGraph = new System.Windows.Forms.Button();
+            this.Ftestbutton = new System.Windows.Forms.Button();
+            this.Ttestbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_a)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_b)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_loops)).BeginInit();
@@ -118,12 +120,12 @@
             // 
             // textBox_Results
             // 
-            this.textBox_Results.Location = new System.Drawing.Point(12, 124);
+            this.textBox_Results.Location = new System.Drawing.Point(12, 156);
             this.textBox_Results.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox_Results.Multiline = true;
             this.textBox_Results.Name = "textBox_Results";
             this.textBox_Results.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_Results.Size = new System.Drawing.Size(338, 256);
+            this.textBox_Results.Size = new System.Drawing.Size(338, 224);
             this.textBox_Results.TabIndex = 6;
             // 
             // button_loops
@@ -176,7 +178,8 @@
             this.comboBox_Method.Items.AddRange(new object[] {
             "function 1",
             "function 2",
-            "function 3"});
+            "function 3",
+            "Math.Pow"});
             this.comboBox_Method.Location = new System.Drawing.Point(66, 68);
             this.comboBox_Method.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBox_Method.Name = "comboBox_Method";
@@ -239,11 +242,35 @@
             this.LineGraph.UseVisualStyleBackColor = true;
             this.LineGraph.Click += new System.EventHandler(this.lineGraph_Click);
             // 
+            // Ftestbutton
+            // 
+            this.Ftestbutton.Location = new System.Drawing.Point(68, 127);
+            this.Ftestbutton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Ftestbutton.Name = "Ftestbutton";
+            this.Ftestbutton.Size = new System.Drawing.Size(120, 23);
+            this.Ftestbutton.TabIndex = 16;
+            this.Ftestbutton.Text = "F-Test";
+            this.Ftestbutton.UseVisualStyleBackColor = true;
+            this.Ftestbutton.Click += new System.EventHandler(this.Ftestbutton_Click);
+            // 
+            // Ttestbutton
+            // 
+            this.Ttestbutton.Location = new System.Drawing.Point(218, 127);
+            this.Ttestbutton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Ttestbutton.Name = "Ttestbutton";
+            this.Ttestbutton.Size = new System.Drawing.Size(120, 23);
+            this.Ttestbutton.TabIndex = 17;
+            this.Ttestbutton.Text = "T-Test";
+            this.Ttestbutton.UseVisualStyleBackColor = true;
+            this.Ttestbutton.Click += new System.EventHandler(this.Ttestbutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 385);
+            this.Controls.Add(this.Ttestbutton);
+            this.Controls.Add(this.Ftestbutton);
             this.Controls.Add(this.LineGraph);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.chart1);
@@ -286,6 +313,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button LineGraph;
+        private System.Windows.Forms.Button Ftestbutton;
+        private System.Windows.Forms.Button Ttestbutton;
     }
 }
 
