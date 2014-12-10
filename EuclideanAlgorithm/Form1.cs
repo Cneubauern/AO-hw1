@@ -415,5 +415,10 @@ namespace EuclideanAlgorithm
             FTestResult result = chart1.DataManipulator.Statistics.FTest(0.05, series_1, series_2);
             textBox_Results.AppendText("\r\n F-Test: " + result.FValue);
         }
+
+        private void numericUpDown_b_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
